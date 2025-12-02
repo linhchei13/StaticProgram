@@ -102,11 +102,11 @@ namespace StaticProgram.Controllers
         }
         
         [HttpPost("login")]
-        public IActionResult Login(string username, string password)
+        public IActionResult Login([FromBody] LoginDto req)
         {
             // SQL Injection
             string sql = 
-                $"SELECT * FROM Users WHERE Username='{username}' AND Password='{password}'";
+                $"SELECT * FROM Users WHERE Username='{req.Username}' AND Password='{req.Password}'";
 
             using var conn = new SqlConnection(CONN);
             conn.Open();
