@@ -1,0 +1,6 @@
+@StaticProgram_HostAddress = http://localhost:5125
+
+GET {{StaticProgram_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
