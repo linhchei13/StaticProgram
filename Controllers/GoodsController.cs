@@ -40,10 +40,11 @@ namespace StaticProgram.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult AddGoods([FromBody] string rawJson)
+        public IActionResult AddGoods([FromBody] Goods item)
         {
-            //  Insecure Deserialization (không validate)
-            var item = JsonConvert.DeserializeObject<Goods>(rawJson);
+            //  Basic validation
+            if (item == null || string.IsNullOrEmpty(item.Name))
+                return BadRequest("Invalid data");
 
             using var conn = new SqlConnection(CONN);
             conn.Open();
